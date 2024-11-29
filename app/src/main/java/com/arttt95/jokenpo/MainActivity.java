@@ -3,6 +3,7 @@ package com.arttt95.jokenpo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -84,7 +85,29 @@ public class MainActivity extends AppCompatActivity {
 
         String escolhaApp = gerarEscolhaAleatoriaApp();
 
-//        System.out.println("Item clicado: " + escolhaUsuario);
+        TextView textoResultado = findViewById(R.id.text_resultado);
+
+        if ( // App ganha
+            (escolhaUsuario == "Pedra" && escolhaApp == "Papel") ||
+            (escolhaUsuario == "Papel" && escolhaApp == "Tesoura") ||
+            (escolhaUsuario == "Tesoura" && escolhaApp == "Pedra")
+        ) {  // Lógica App ganha
+
+            textoResultado.setText("Você perdeu :(");
+
+        } else if (  // Usuário ganha
+            (escolhaUsuario == "Pedra" && escolhaApp == "Tesoura") ||
+            (escolhaUsuario == "Papel" && escolhaApp == "Pedra") ||
+            (escolhaUsuario == "Tesoura" && escolhaApp == "Papel")
+        ) { // Lógica Usuário ganha
+
+            textoResultado.setText("Você ganhou :)");
+
+        } else { // Empate
+
+            textoResultado.setText("It's a tie buddie!");
+
+        }
 
     }
 
