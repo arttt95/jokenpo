@@ -2,12 +2,15 @@ package com.arttt95.jokenpo;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -47,9 +50,42 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void verificarGanhador(String escolhaUsuario) {
+    private String gerarEscolhaAleatoriaApp() {
 
-        System.out.println("Item clicado: " + escolhaUsuario);
+        Random random = new Random();
+        int numeroAleatorio = random.nextInt(3); // 0, 1 e 2
+
+        String[] opcoes = {"Pedra", "Papel" , "Tesoura"};
+
+        String escolhaApp = opcoes[numeroAleatorio];
+
+        ImageView imagemEscolhaApp = findViewById(R.id.image_escolhaApp);
+
+        switch (escolhaApp) {
+
+            case "Pedra":
+                imagemEscolhaApp.setImageResource(R.drawable.pedra);
+                break;
+            case "Papel":
+                imagemEscolhaApp.setImageResource(R.drawable.papel);
+                break;
+            case "Tesoura":
+                imagemEscolhaApp.setImageResource(R.drawable.tesoura);
+                break;
+            default:
+                imagemEscolhaApp.setImageResource(R.drawable.padrao);
+        }
+
+        return escolhaApp;
 
     }
+
+    private void verificarGanhador(String escolhaUsuario) {
+
+        String escolhaApp = gerarEscolhaAleatoriaApp();
+
+//        System.out.println("Item clicado: " + escolhaUsuario);
+
+    }
+
 }
